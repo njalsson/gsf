@@ -18,7 +18,7 @@ create table membership
 
 create table rental
 	(
-		rentNum int not null auto_increment,
+		rentNum int not null ,
 		rentDate varchar(255),
 		memNum int,
 		primary key ( rentNum ),
@@ -36,7 +36,7 @@ create table price
 	);
 create table movie
 	(
-		movieNum int not null auto_increment,
+		movieNum int not null ,
 		movieTitle varchar(255),
 		movieYear int,
 		movieCost float,
@@ -47,8 +47,8 @@ create table movie
 	);
 create table video
 	(
-		vidNum int not null auto_increment,
-		vidInDate date,
+		vidNum int not null ,
+		vidInDate varchar(255),
 		movieNum int,
 		primary key	( vidNum ),
 		foreign key ( movieNum ) references movie( movieNum )
@@ -60,8 +60,8 @@ create table detailRental
 		rentNum int,
 		vidNum int,
 		detailFee int,
-		detailDueDate date,
-		detailReturnDate date,
+		detailDueDate varchar(255),
+		detailReturnDate varchar(255),
 		detailDailyLateFee int,
 		foreign key ( rentNum ) references rental( rentNum ),
 		foreign key ( vidNum )  references video( vidNum)
@@ -90,6 +90,19 @@ values
 	(113,"Minnie","Gonzales","6430 Vasili Drive","Williston","TN",38076,0);
 
 
+
+insert into price
+values
+	(1,"Standard",2,1),
+	(2,"New Release",3.5,3),
+	(3,"Discount",1.5,1),
+	(4,"Weekly Special",1,0.5);
+
+
+
+
+
+
 insert into rental
 values
 	(1001, '01-mar-09', 103),
@@ -101,6 +114,10 @@ values
 	(1007, '02-mar-09', 104),
 	(1008, '03-mar-09', 105),
 	(1009, '03-mar-09', 111);
+
+
+
+
 
 insert into detailRental
 values
@@ -121,6 +138,19 @@ values
 	(1008, 54324, 3.5, '05-mar-09', '05-mar-09', 3),
 	(1009, 54324, 3.5, '05-mar-09', '', 3),
 	(1001, 34366, 3.5, '04-mar-09', '', 3);
+
+insert into movie
+values
+	(1234,"The Cesar Family Christmas",2007,39.95,"Family",2),
+	(1235,"The Smokey Mountain Wildlife",2004,59.95,"Action",1),
+	(1236,"Richard Goodhope",2008,59.95,"Drama",2),
+	(1237,"Beatnik Fever",2007,29.95,"Comedy",2),
+	(1238,"Constant Companion",2008,89.95,"Drama",2),
+	(1239,"Where Hope Dies",1998,25.49,"Drama",3),
+	(1245,"Time To Burn",2005,45.49,"Action",1),
+	(1246,"What he Doesn't Know",2006,58.29,"Comedy",1);
+
+
 
 
 insert into video
@@ -146,10 +176,6 @@ values
 
 
 
-insert into movie
-values
-	(1234,"The Cesar Family Christmas",2007,39.95,"Family",2),
-	(1235,"The Cesar Family Christmas",2007,39.95,"Family",2),
 
 
 
@@ -159,3 +185,18 @@ values
 
 
 
+# 3
+select movieTitle, movieYear, movieCost from movie where movieTitle like '%hope%' order by movieTitle asc;
+
+
+# 4
+select movieTitle, movieYear, movieGenre from movie where movieGenre ="Action";
+
+# 5
+select movieNum, movieTitle, movieCost from movie where movieCost >= 40;
+
+#6
+select movieNum, movieTitle, movieCost from movies where movieCost < 50 and movieGenre = "Action" or movieGenre = "Comedy" order by movieGenre asc;
+
+#7
+#5select movieNum, priceDescription
