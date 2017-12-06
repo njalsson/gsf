@@ -195,8 +195,46 @@ select movieTitle, movieYear, movieGenre from movie where movieGenre ="Action";
 # 5
 select movieNum, movieTitle, movieCost from movie where movieCost >= 40;
 
-#6
-select movieNum, movieTitle, movieCost from movies where movieCost < 50 and movieGenre = "Action" or movieGenre = "Comedy" order by movieGenre asc;
+# 6
+select movieNum, movieTitle, movieCost from movie where movieCost < 50 and movieGenre = "Action" or movieGenre = "Comedy" order by movieGenre asc;
 
-#7
-#5select movieNum, priceDescription
+# 7
+select movieNum, movieTitle || ' (' || movieYear || ') ' || movieGenre as "Movie Description" from movie;
+
+# 8
+select movieGenre, count(*) as "Number of Movies" from movie group by movieGenre;
+
+# 9 
+select avg(movieCost) as "average movie cost" from movie;
+
+# 10
+select movieGenre, avg(movieCost) as "average cost" from movie group by movieGenre;
+
+# 11
+#select movieTitle, movieGenre, priceDescription, priceDescription
+
+## nadi ekki ad gera utaf thad er ehv bug i moviedescription
+
+# 12
+select movieGenre, avg(priceCode) as "Average rental fee" and movieCost > 0 from movie group by movieGenre;
+
+# 13
+
+
+# 14
+select movieTitle, movieYear from movie where movieCost > 0 group by movieTitle;
+
+# 15
+select movieTitle, movieYear from movie where movieCost > 44.99 and movieCost < 49.99 group by movieTitle;
+
+#16
+#select movieTitle, movieYear, priceDescription, priceRentFee, movieGenre where movieGenre not like "%Action%"
+## tharf detail rental til ad tengja saman price og movie.
+
+# 18
+select concat(memFname, ' ' ,memLname) as "Membership Names", concat(memStreet, ' ', memState, ' ' ,memZip) as "Membership Address" from membership;
+
+# 19
+## sama med detail
+
+# 20
